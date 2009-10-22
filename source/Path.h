@@ -220,15 +220,16 @@ Path()
   TEST_FAIL_IF(path.getExtension() != "jpeg", "Extension is not 'jpeg' it is " + path.getExtension());
  }
   
- TEST_DESCRIPTION("Relative test 2; 'file://../../pictures/monkey.jpeg'")
+ TEST_DESCRIPTION("Relative test 3; 'file://../../pictures/../pictures2/monkey.jpeg'")
  { 
-  NxOgre::Path path("file://../monkey.jpeg");
+  NxOgre::Path path("file://../../pictures/../pictures2/monkey.jpeg");
   
   TEST_FAIL_IF(path.getProtocol() != "file", "Protocol is not 'file', it is " + path.getProtocol());
-  TEST_FAIL_IF(path.getNbDirectories() != 3, "Not three directory in path, there are " + uintToString(path.getNbDirectories()));
-  TEST_FAIL_IF(path.getDirectory(0) != "pictures", "Parent directory 0 is not 'pictures', it is " + path.getDirectory(0));
+  TEST_FAIL_IF(path.getNbDirectories() != 5, "Not five directory in path, there are " + uintToString(path.getNbDirectories()));
+  TEST_FAIL_IF(path.getDirectory(0) != "pictures2", "Parent directory 0 is not 'pictures', it is " + path.getDirectory(0));
   TEST_FAIL_IF(path.getDirectory(1) != "..", "Parent directory 1 is not '..', it is " + path.getDirectory(1));
-  TEST_FAIL_IF(path.getDirectory(2) != "..", "Parent directory 2 is not '..', it is " + path.getDirectory(2));
+  TEST_FAIL_IF(path.getDirectory(2) != "pictures", "Parent directory 2 is not '..', it is " + path.getDirectory(2));
+  TEST_FAIL_IF(path.getDirectory(3) != "..", "Parent directory 3 is not '..', it is " + path.getDirectory(3));
   TEST_FAIL_IF(path.getFilenameOnly() != "monkey", "File name is not 'monkey' it is " + path.getFilenameOnly());
   TEST_FAIL_IF(path.getExtension() != "jpeg", "Extension is not 'jpeg' it is " + path.getExtension());
  }
